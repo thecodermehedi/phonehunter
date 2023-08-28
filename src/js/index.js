@@ -4,16 +4,20 @@ const loadPhone = async (searchText) => {
   );
   const data = await res.json();
   const phones = data.data;
-  // console.log(phones);
   displayPhones(phones);
 };
 
 const displayPhones = (phones) => {
-  // console.log(phones);
   const phonesContainer = document.getElementById("phones-container");
   phonesContainer.textContent = "";
+  const loadmoreContainer = document.getElementById("load-more-container");
+  if (phones.length > 12) {
+    loadmoreContainer.classList.remove("hidden");
+  } else {
+    loadmoreContainer.classList.add("hidden");
+  }
+  phones = phones.slice(0, 12);
   phones.forEach((phone) => {
-    console.log(phone);
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card max-w-[240px] max-h-[424px] bg-gray-200 shadow-xl`;
     phoneCard.innerHTML = `
@@ -21,42 +25,46 @@ const displayPhones = (phones) => {
       <img src="${phone.image}" alt="Phones" class="rounded-xl" />
     </figure>
     <div class="card-body items-center text-center">
-      <h2 class="card-title font-black">${phone.phone_name}</h2>
-      <p class="font-normal">${phone.brand}</p>
+      <h2 class="card-title">${phone.phone_name}</h2>
+      <p>${phone.brand}</p>
       <div class="card-actions">
-        <button class="btn btn-neutral min-h-0 h-10 capitalize" font-bold>
-          Buy Now
+        <button class="btn min-h-0 h-10 bg-gray-200 border border-solid border-blue-500 hover:bg-blue-600 capitalize text-blue-500 hover:text-white transition duration-100 ease-in hover:border hover:border-solid hover:border-blue-500">
+          Add to Cart
         </button>
       </div>
     </div>`;
     phonesContainer.appendChild(phoneCard);
   });
+  toggleLoadingSpinner(false);
 };
 
 //Search
 
-document
-  .getElementById("search-field-1")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      processSearch1();
-    }
-  });
-document
-  .getElementById("search-field-2")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      processSearch2();
-    }
-  });
+function searchButton() {
+  const searchInputText = searchField.value;
+  searchField.value = "";
+  toggleLoadingSpinner(true);
+  loadPhone(searchInputText);
+}
 
-const processSearch1 = () => {
-  const searchField = document.getElementById("search-field-1");
-  const searchText = searchField.value;
-  loadPhone(searchText);
-};
-const processSearch2 = () => {
-  const searchField = document.getElementById("search-field-2");
-  const searchText = searchField.value;
-  loadPhone(searchText);
+const searchBtn = document.getElementById("search-btn");
+searchBtn.addEventListener("click", function () {
+  searchButton();
+});
+
+const searchField = document.getElementById("search-field");
+searchField.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    searchButton();
+  }
+});
+
+const toggleLoadingSpinner = (isLoading) => {
+  const loadingSpinner = document.getElementById("loading-spinner");
+  if(isLoading){
+  loadingSpinner.classList.remove("hidden");
+  }
+  else{
+    loadingSpinner.classList.add("hidden");
+  }
 };
