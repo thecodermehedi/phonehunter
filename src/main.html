@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,18 +28,22 @@
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <!-- Link to an external CSS file -->
     <link rel="stylesheet" href="../dist/style.css" />
   </head>
-  <body class="font-merriweather">
+  <body
+    class="font-merriweather bg-stale-200 dark:bg-gray-900 text-gray-900 dark:text-slate-200"
+  >
     <header>
       <!-- Navbar Start -->
-      <nav
-        class="md:mx-20 py-5 flex justify-center md:justify-between items-center"
-      >
+      <nav class="mx-5 md:mx-20 py-5 flex justify-between items-center">
         <div class="logo">
           <a
             href="https://dub.sh/phonehunter"
@@ -55,21 +59,18 @@
           </li>
           <li
             onclick="loadPhone('iphone')"
-            id="iphone-link"
             class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
           >
             iPhone
           </li>
           <li
             onclick="loadPhone('samsung')"
-            id="samsung-link"
             class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
           >
             Samsung
           </li>
           <li
             onclick="loadPhone('huawei')"
-            id="huawei-link"
             class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
           >
             Huawei
@@ -82,8 +83,8 @@
             Oppo
           </li>
         </div>
-        <div class="hidden md:flex justify-between items-center">
-          <a href="#">
+        <div class="flex justify-between items-center">
+          <a href="#" class="hidden md:block">
             <svg
               class="cursor-pointer fill-current hover:fill-blue-500 w-8 mx-3"
               xmlns="http://www.w3.org/2000/svg"
@@ -94,9 +95,8 @@
               />
             </svg>
           </a>
-          <label class="swap swap-rotate">
-            <!-- this hidden checkbox controls the state -->
-            <input type="checkbox" />
+          <label class="swap swap-rotate hover:fill-blue-700">
+            <input id="colorCheckbox" type="checkbox" />
 
             <!-- sun icon -->
             <svg
@@ -138,7 +138,7 @@
       </nav>
       <!-- Navbar End -->
       <!-- Searchbox Start -->
-      <section class="mx-10 md:mx-20">
+      <section class="mx-5 md:mx-20">
         <div class="relative">
           <div
             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
@@ -162,20 +162,46 @@
           <input
             type="search"
             id="search-field"
-            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-2xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block w-full p-4 pl-10 text-sm outline-none text-gray-900 border border-gray-300 rounded-2xl bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-200"
             placeholder="Search your phone..."
             required
           />
           <button
             id="search-btn"
             type="submit"
-            class="text-white absolute inset-y-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl lg:text-xl text-sm sm:text-md px-3 sm:px-5 lg:px-10 rounded-l-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="btn border-none capitalize h-full text-slate-200 absolute inset-y-0 right-0 bg-blue-700 hover:bg-blue-800 outline-none font-medium rounded-2xl lg:text-xl text-sm sm:text-md px-3 sm:px-5 lg:px-10 rounded-l-none dark:bg-blue-600 dark:hover:bg-blue-700"
           >
             Search
           </button>
         </div>
       </section>
       <!-- Searchbox End -->
+      <div class="flex justify-center items-center mx-5 mt-5 mb-10 lg:hidden">
+        <li
+          onclick="loadPhone('iphone')"
+          class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
+        >
+          iPhone
+        </li>
+        <li
+          onclick="loadPhone('samsung')"
+          class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
+        >
+          Samsung
+        </li>
+        <li
+          onclick="loadPhone('huawei')"
+          class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
+        >
+          Huawei
+        </li>
+        <li
+          onclick="loadPhone('oppo')"
+          class="list-none inline texl-2xl font-semibold mx-2 cursor-pointer hover:text-blue-500"
+        >
+          Oppo
+        </li>
+      </div>
     </header>
     <main>
       <section class="mx-10 md:mx-20 my-5 text-center">
@@ -187,17 +213,69 @@
         </div>
         <div
           id="phones-container"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 place-items-center"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 place-items-center min-h-screen"
         ></div>
-        <div id="load-more-container" class="text-center hidden my-7">
+        <div id="load-more-container" class="text-center hidden py-10">
           <button
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-lg px-5 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700 hover:bg-blue-800 outline-none font-medium rounded-2xl text-lg dark:bg-blue-600 dark:hover:bg-blue-700"
           >
             Load More
           </button>
         </div>
       </section>
     </main>
+    <footer class="bg-stale-200">
+      <section class="mx-10 md:mx-20 py-5 text-center">
+        <div class="flex flex-col lg:flex-row justify-between items-center">
+          <div class="logo">
+            <a
+              href="https://dub.sh/phonehunter"
+              class="text-center font-black font-adlamdisplay text-3xl md:text-4xl"
+              >Phone<span class="text-blue-500">Hunter</span></a
+            >
+          </div>
+          <div
+            class="flex flex-wrap my-10 lg:my-0 text-center items-center font-medium text-gray-900 dark:text-slate-200"
+          >
+            <li class="list-none">
+              <a href="#" class="mx-2 hover:underline text-sm md:text-lg"
+                >About</a
+              >
+            </li>
+            <li class="list-none">
+              <a href="#" class="mx-2 hover:underline text-sm md:text-lg"
+                >Privacy Policy</a
+              >
+            </li>
+            <li class="list-none">
+              <a href="#" class="mx-2 hover:underline text-sm md:text-lg"
+                >License</a
+              >
+            </li>
+            <li class="list-none">
+              <a href="#" class="mx-2 hover:underline text-sm md:text-lg"
+                >Contact</a
+              >
+            </li>
+          </div>
+        </div>
+        <hr class="border-blue-500 dark:border-blue-700 my-8 hidden lg:block" />
+        <p
+          class="text-center text-lg text-gray-900 dark:text-slate-200 font-roboto"
+        >
+          <a href="https://dub.sh/phonehunter" class="hover:underline"
+            >PhoneHunter</a
+          >
+          © 2023 <br />
+          Design &amp; Developed by
+          <a
+            href="https://github.com/devbytemehedi"
+            class="hover:underline text-blue-500"
+            >Mehedi Hasan</a
+          >
+        </p>
+      </section>
+    </footer>
     <script src="./js/index.js"></script>
   </body>
 </html>

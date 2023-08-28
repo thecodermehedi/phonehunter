@@ -19,16 +19,17 @@ const displayPhones = (phones) => {
   phones = phones.slice(0, 12);
   phones.forEach((phone) => {
     const phoneCard = document.createElement("div");
-    phoneCard.classList = `card max-w-[240px] max-h-[424px] bg-gray-200 shadow-xl`;
+    phoneCard.classList = `card max-w-[240px] max-h-[424px] bg-gray-200 dark:bg-gray-700 shadow-xl rounded-2xl`;
     phoneCard.innerHTML = `
     <figure class="px-10 pt-10">
-      <img src="${phone.image}" alt="Phones" class="rounded-xl" />
+      <img src="${phone.image}" alt="Phones" class="rounded-2xl" />
     </figure>
     <div class="card-body items-center text-center">
-      <h2 class="card-title">${phone.phone_name}</h2>
-      <p>${phone.brand}</p>
+      <h2 class="card-title dark:text-slate-200">${phone.phone_name}</h2>
+      <p class="dark:text-slate-200">${phone.brand}</p>
       <div class="card-actions">
-        <button class="btn min-h-0 h-10 bg-gray-200 border border-solid border-blue-500 hover:bg-blue-600 capitalize text-blue-500 hover:text-white transition duration-100 ease-in hover:border hover:border-solid hover:border-blue-500">
+        <button class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700
+         hover:bg-blue-800 outline-none font-medium rounded-2xl dark:bg-blue-600 dark:hover:bg-blue-700">
           Add to Cart
         </button>
       </div>
@@ -61,10 +62,15 @@ searchField.addEventListener("keydown", function (event) {
 
 const toggleLoadingSpinner = (isLoading) => {
   const loadingSpinner = document.getElementById("loading-spinner");
-  if(isLoading){
-  loadingSpinner.classList.remove("hidden");
-  }
-  else{
+  if (isLoading) {
+    loadingSpinner.classList.remove("hidden");
+  } else {
     loadingSpinner.classList.add("hidden");
   }
 };
+
+const colorCheckbox = document.getElementById("colorCheckbox");
+const html = document.getElementsByTagName("html")[0];
+colorCheckbox.addEventListener("change", function () {
+  html.classList.toggle("dark");
+});
