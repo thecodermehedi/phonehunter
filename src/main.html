@@ -3,31 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Swift Start | Homepage</title>
-    <meta name="title" content="Swift Start | Homepage" />
-    <meta
-      name="description"
-      content="A versatile web project starter template with HTML5, CSS3, Tailwind CSS, daisyUI, Git, and Node.js for quick, responsive web development."
-    />
+    <title>PhoneHunter - Your Phone Finder</title>
+    <meta name="title" content="PhoneHunter" />
+    <meta name="description" content="PhoneHunter - Search your phone here" />
     <!-- Favicon  -->
     <!-- https://favicon.io -->
+    <link
+      rel="shortcut icon"
+      href="./assets/favicons/favicon.ico"
+      type="image/x-icon"
+    />
     <link rel="icon" sizes="192x192" href="./assets/favicons/icon.png" />
     <!-- Apple Touch Icon (reuse 192px icon.png) -->
     <link rel="apple-touch-icon" href="./assets/favicons/icon.png" />
-    <!-- Safari Pinned Tab Icon -->
-    <link rel="mask-icon" href="./assets/favicons/icon.svg" color="blue" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap"
       rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <!-- Link to an external CSS file -->
     <link rel="stylesheet" href="../dist/style.css" />
   </head>
-
-  <body>
-    <script src="./js/main.js"></script>
+  <body class="font-merriweather">
+    <header>
+      <div class="navbar px-8 md:px-14 lg:px-24 justify-center items-center">
+        <div>
+          <a href="#"
+            ><h1 class="font-black text-4xl font-adlamdisplay">
+              PhoneHunter
+            </h1></a
+          >
+        </div>
+        <div class="flex gap-2">
+          <div class="hidden md:flex relative w-full mx-10">
+            <input
+              id="search-field-1"
+              type="text"
+              placeholder="Search your phone"
+              class="input w-[50rem] h-10 rounded-xl bg-gray-200 rounded-r-none placeholder:text-gray-400 focus:outline-none pl-8 border-none"
+            />
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <i class="fas fa-search text-gray-400"></i>
+            </div>
+            <button
+              onclick="processSearch1()"
+              class="btn border-none text-white bg-gray-900 min-h-[2.5rem] h-10 rounded-l-none hover:bg-black capitalize rounded-xl"
+            >
+              Search
+            </button>
+          </div>
+          <div class="dropdown dropdown-end hidden md:block">
+            <label tabindex="0" class="btn btn-circle avatar hover:border-none">
+              <div class="w-10 rounded-full">
+                <i class="fa-solid fa-user text-3xl"></i>
+              </div>
+            </label>
+            <ul
+              tabindex="0"
+              class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white rounded-box w-fit"
+            >
+              <li>
+                <a href="https://github.com/devbytemehedi" target="_blank"
+                  ><i class="fa-solid fa-user text-gray-700"></i> Profile</a
+                >
+              </li>
+              <li>
+                <a><i class="fa-solid fa-gear text-gray-700"></i> Settings</a>
+              </li>
+              <li>
+                <a
+                  ><i class="fa-solid fa-right-from-bracket text-gray-700"></i>
+                  Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center mb-5 md:hidden">
+        <input
+          id="search-field-2"
+          type="text"
+          placeholder="Search your phone"
+          class="input w-3/4 h-10 rounded-xl bg-gray-200 rounded-r-none placeholder:text-gray-400 focus:outline-none border-none"
+        />
+        <button
+          onclick="processSearch2()"
+          class="btn border-none text-white bg-gray-900 min-h-[2.5rem] h-10 rounded-l-none hover:bg-black capitalize rounded-xl"
+        >
+          <i class="fa-solid fa-magnifying-glass text-white"></i>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="lg:px-10 mt-10 mb-20">
+        <div
+          id="phones-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center"
+        ></div>
+      </section>
+    </main>
+    <script src="./js/index.js"></script>
   </body>
 </html>
