@@ -27,6 +27,7 @@ const displayPhones = (phones, loadMore) => {
     phones = phones.slice(0, 12);
   }
   phones.forEach((phone) => {
+    // console.log(phone);
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card max-w-[240px] max-h-[424px] bg-gray-200 dark:bg-gray-700 shadow-xl rounded-2xl`;
     phoneCard.innerHTML = `
@@ -37,9 +38,8 @@ const displayPhones = (phones, loadMore) => {
       <h2 class="card-title dark:text-slate-200">${phone.phone_name}</h2>
       <p class="dark:text-slate-200">${phone.brand}</p>
       <div class="card-actions">
-        <button class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700
-         hover:bg-blue-800 outline-none font-medium rounded-2xl dark:bg-blue-600 dark:hover:bg-blue-700">
-          Add to Cart
+        <button onclick="showDetails('${phone.slug}')" class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700 hover:bg-blue-800 outline-none font-medium rounded-2xl dark:bg-blue-600 dark:hover:bg-blue-700">
+          Show Details
         </button>
       </div>
     </div>`;
@@ -97,3 +97,61 @@ loadMoreBtn.addEventListener("click", function () {
   loadPhone(returnValue, true);
   searchField.value = "";
 });
+
+const showDetails = async (slug) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phone/${slug}`
+  );
+  const data = await res.json();
+  const phone = data.data;
+  showfullDetails(phone);
+};
+
+const showfullDetails = (phone) => {
+  console.log(phone);
+  const showDetails = document.getElementById("show-details");
+  showDetails.innerHTML = `
+  <form method="dialog" class="card lg:card-side bg-gray-200 dark:bg-gray-700 shadow-xl rounded-2xl p-5">
+  <figure><img src="${
+    phone.image
+  }" class="rounded-2xl w-fit h-fit" alt="Album"/></figure>
+      <div class="card-body">
+        <h2 class="card-title dark:text-slate-200 font-black font-adlamdisplay">${
+          phone.name
+        }</h2>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Brand:</span> ${
+          phone.brand
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Storage:</span> ${
+          phone?.mainFeatures?.storage || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Display Size:</span> ${
+          phone?.mainFeatures?.displaySize || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Chipset:</span> ${
+          phone?.mainFeatures?.chipSet || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Memory:</span> ${
+          phone?.mainFeatures?.memory || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Release Date:</span> ${
+          phone?.releaseDate || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">WLAN:</span> ${
+          phone?.others?.WLAN || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">GPS:</span> ${
+          phone?.others?.GPS || "N/A"
+        }</p>
+        <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">USB:</span> ${
+          phone?.others?.USB || "N/A"
+        }</p>
+        <div class="modal-action">
+          <button class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700
+          hover:bg-blue-800 outline-none font-medium rounded-2xl dark:bg-blue-600 dark:hover:bg-blue-700">Close</button>
+        </div>
+      </div>
+    </form>
+  `;
+  showDetails.showModal();
+};
