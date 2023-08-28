@@ -1,22 +1,31 @@
-const loadPhone = async (searchText) => {
+// Preloader
+
+window.onload = () => {
+  const loader = document.getElementById("preloader");
+  loader.style.display = "none";
+};
+
+const loadPhone = async (searchText, loadMore = false) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
   const data = await res.json();
   const phones = data.data;
-  displayPhones(phones);
+  displayPhones(phones, loadMore);
 };
 
-const displayPhones = (phones) => {
+const displayPhones = (phones, loadMore) => {
   const phonesContainer = document.getElementById("phones-container");
   phonesContainer.textContent = "";
   const loadmoreContainer = document.getElementById("load-more-container");
-  if (phones.length > 12) {
+  if (phones.length > 12 && !loadMore) {
     loadmoreContainer.classList.remove("hidden");
   } else {
     loadmoreContainer.classList.add("hidden");
   }
-  phones = phones.slice(0, 12);
+  if (!loadMore) {
+    phones = phones.slice(0, 12);
+  }
   phones.forEach((phone) => {
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card max-w-[240px] max-h-[424px] bg-gray-200 dark:bg-gray-700 shadow-xl rounded-2xl`;
@@ -41,13 +50,12 @@ const displayPhones = (phones) => {
 
 //Search
 
-function searchButton() {
+const searchButton = () => {
   const searchInputText = searchField.value;
-  searchField.value = "";
+  // searchField.value = "";
   toggleLoadingSpinner(true);
   loadPhone(searchInputText);
-}
-
+};
 const searchBtn = document.getElementById("search-btn");
 searchBtn.addEventListener("click", function () {
   searchButton();
@@ -59,6 +67,13 @@ searchField.addEventListener("keydown", function (event) {
     searchButton();
   }
 });
+
+const searchLink = (searchlinkvalue) => {
+  const searchValue = searchlinkvalue;
+  const searchField = document.getElementById("search-field");
+  searchField.value = searchValue;
+  loadPhone(searchValue);
+};
 
 const toggleLoadingSpinner = (isLoading) => {
   const loadingSpinner = document.getElementById("loading-spinner");
@@ -73,4 +88,12 @@ const colorCheckbox = document.getElementById("colorCheckbox");
 const html = document.getElementsByTagName("html")[0];
 colorCheckbox.addEventListener("change", function () {
   html.classList.toggle("dark");
+});
+
+const loadMoreBtn = document.getElementById("loadmore-btn");
+loadMoreBtn.addEventListener("click", function () {
+  const searchField = document.getElementById("search-field");
+  const returnValue = searchField.value;
+  loadPhone(returnValue, true);
+  searchField.value = "";
 });
