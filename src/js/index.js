@@ -5,11 +5,25 @@ window.onload = () => {
   loader.style.display = "none";
 };
 
+const toggleSearch = (isData) => {
+  const searchResultMessage = document.getElementById("nothing-found");
+  const searchField = document.getElementById("search-field");
+  if (!isData) {
+    searchField.value = "";
+    searchResultMessage.classList.remove("hidden");
+    return;
+  } else {
+    searchResultMessage.classList.add("hidden");
+  }
+};
 const loadPhone = async (searchText, loadMore = false) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
   const data = await res.json();
+  console.log(data.status);
+  const isData = data.status;
+  toggleSearch(isData);
   const phones = data.data;
   displayPhones(phones, loadMore);
 };
@@ -55,6 +69,7 @@ const searchButton = () => {
   // searchField.value = "";
   toggleLoadingSpinner(true);
   loadPhone(searchInputText);
+  console.log(searchInputText);
 };
 const searchBtn = document.getElementById("search-btn");
 searchBtn.addEventListener("click", function () {
