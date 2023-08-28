@@ -123,28 +123,28 @@ const showfullDetails = (phone) => {
           phone.brand
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Storage:</span> ${
-          phone?.mainFeatures?.storage || "N/A"
+          phone?.mainFeatures?.storage || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Display Size:</span> ${
-          phone?.mainFeatures?.displaySize || "N/A"
+          phone?.mainFeatures?.displaySize || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Chipset:</span> ${
-          phone?.mainFeatures?.chipSet || "N/A"
+          phone?.mainFeatures?.chipSet || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Memory:</span> ${
-          phone?.mainFeatures?.memory || "N/A"
+          phone?.mainFeatures?.memory || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">Release Date:</span> ${
-          phone?.releaseDate || "N/A"
+          phone?.releaseDate || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">WLAN:</span> ${
-          phone?.others?.WLAN || "N/A"
+          phone?.others?.WLAN || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">GPS:</span> ${
-          phone?.others?.GPS || "N/A"
+          phone?.others?.GPS || "Not Available"
         }</p>
         <p class="dark:text-slate-200 font-roboto"><span class="font-black font-merriweather">USB:</span> ${
-          phone?.others?.USB || "N/A"
+          phone?.others?.USB || "Not Available"
         }</p>
         <div class="modal-action">
           <button class="btn min-h-0 h-10 border-none capitalize text-slate-200 bg-blue-700
