@@ -1575,6 +1575,9 @@ html {
 .artboard.phone {
   width: 320px;
 }
+#phones-container{
+  color:#768492.
+}
 
 .modal-bottom {
   place-items: end;
