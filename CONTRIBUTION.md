@@ -7,7 +7,6 @@ If you're new here, we're excited to have you! Please follow the steps below to 
 > - **Claim the Issue**: Comment on the issue to let us know you're working on it.
 > - **Fork the Repository**: Click the "Fork" button on the top right of this repository's page.
 > - **Clone Your Fork**: Clone the repository to your local machine using `git clone [your-fork-url]`.
-> - **Node and Npm**: Install NodeJS then in the project folder run `npm i` to install dependency and `npm run build` to start working. 
 > - **Create a New Branch**: Create a new branch for your changes using `git checkout -b your-branch-name`.
 > - **Make Changes**: Make necessary changes
 > - **Test Your Changes**: Ensure your changes work as expected.
