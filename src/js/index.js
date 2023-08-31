@@ -1,9 +1,15 @@
 // Preloader
 
 window.onload = () => {
-  const loader = document.getElementById("preloader");
-  loader.style.display = "none";
+  const preloader = document.getElementById("preloader");
+  preloader.classList.add("hidden");
+  const body = document.getElementById("body");
+  body.classList.remove("hidden");
 };
+
+
+
+
 
 const toggleSearch = (isData) => {
   const searchResultMessage = document.getElementById("nothing-found");
