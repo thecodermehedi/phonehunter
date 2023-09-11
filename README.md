@@ -1,15 +1,21 @@
-# phone-hunter-api
+<div align="center">
+<img src="./src/assets/favicons/icon.png" width="50px"> 
+<h1> PhoneHunter </h1>
 
-## API Links
+<p><strong>A Simple Responsive & Interactive Phone Finding Website</strong> </p>
 
-### Phone Search
+[![wakatime](https://wakatime.com/badge/user/805ef0e4-46bb-49a3-bffc-fd6ca82758b5/project/430731f0-614e-42b9-80fb-6b1a6a8c4b46.svg)](https://wakatime.com/badge/user/805ef0e4-46bb-49a3-bffc-fd6ca82758b5/project/430731f0-614e-42b9-80fb-6b1a6a8c4b46)
 
-URL Format: https://openapi.programming-hero.com/api/phones?search=${searchText}
+</div>
 
-Example: https://openapi.programming-hero.com/api/phones?search=iphone
+## Phone Search API
 
-### Phone detail url:
+**URL Format**: https://openapi.programming-hero.com/api/phones?search=${searchText}
 
-URL Format: https://openapi.programming-hero.com/api/phone/${id}
+**Example**: https://openapi.programming-hero.com/api/phones?search=iphone
 
-Example: https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089
+## Single Phone API
+
+**URL Format**: https://openapi.programming-hero.com/api/phone/${id}
+
+**Example**: https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089
